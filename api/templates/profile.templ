@@ -1,0 +1,20 @@
+package templates
+
+import (
+    "github.com/jamescatania1/go-templ-daisyui-sqlc/database/sqlc"
+)
+
+templ Profile(user *sqlc.User) {
+    <main class="flex flex-col items-center justify-center min-h-screen w-full">
+    <div class="card card-border bg-base-100 max-w-[32rem] w-full shadow-md">
+        <div class="card-body md:p-10">
+            <h2 class="card-title">
+                Hi, {user.Name}
+            </h2>
+            <p class="text-base-content/75 text-pretty">
+                {user.Email}
+            </p>
+        </div>
+    </div>
+    </main>
+}

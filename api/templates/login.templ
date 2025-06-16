@@ -1,0 +1,71 @@
+package templates
+
+import "github.com/jamescatania1/go-templ-daisyui-sqlc/api/templates/icons"
+
+templ Login(errorMessage string) {
+	<main class="flex flex-col items-center justify-center min-h-screen w-full">
+		<div class="card card-border bg-base-100 max-w-[32rem] w-full shadow-md">
+			<div class="card-body md:p-10">
+				<h2 class="card-title">
+					Sign In
+				</h2>
+				<p class="text-base-content/75 text-pretty">
+					Enter your email below to login to your account
+				</p>
+				if len(errorMessage) > 0 {
+					<div role="alert" class="alert alert-error alert-dash rounded-none mt-2">
+						<span>{ errorMessage }</span>
+					</div>
+				}
+				<form method="POST" action="/login" class="card-actions mt-2">
+					<label for="email" class="label text-base-content font-medium">
+						Email
+					</label>
+					<input
+						id="email"
+						name="email"
+						class="input validator w-full"
+						type="email"
+						required
+						placeholder="mail@site.com"
+						autocomplete="email"
+					/>
+					<div class="validator-hint mt-0 hidden">
+						Enter a valid email address
+					</div>
+					<div class="flex flex-row justify-between items-center w-full mt-2">
+						<label for="password" class="label text-base-content font-medium w-full">
+							Password
+						</label>
+						<a href="/forgot-password" class="link link-hover link-primary text-nowrap">
+							Forgot your password?
+						</a>
+					</div>
+					<input
+						id="password"
+						name="password"
+						class="input validator w-full"
+						type="password"
+						minlength="8"
+						autocomplete="current-password"
+						required
+					/>
+					<button type="submit" class="btn btn-primary btn-block mt-4">
+						Sign In
+					</button>
+					<div class="divider w-full my-1">OR</div>
+					<a href="/" class="btn bg-white text-neutral-800 border-base-300 btn-block hover:bg-neutral-100">
+						@icons.IconGoogle()
+						Sign in with Google
+					</a>
+					<p class="text-center w-full mt-2">
+						Don't have an account? 
+						<a href="/signup" class="link link-primary link-hover">
+							Sign up
+						</a>
+					</p>
+				</form>
+			</div>
+		</div>
+	</main>
+}

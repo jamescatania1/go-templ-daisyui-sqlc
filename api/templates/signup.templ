@@ -1,0 +1,101 @@
+package templates
+
+import "github.com/jamescatania1/go-templ-daisyui-sqlc/api/templates/icons"
+
+templ Signup(errorMessage string) {
+	<main class="flex flex-col items-center justify-center min-h-screen w-full">
+		<div class="card card-border bg-base-100 max-w-[32rem] w-full shadow-md">
+			<div class="card-body md:p-10">
+				<h2 class="card-title">
+					Create an account
+				</h2>
+				<p class="text-base-content/75 text-pretty">
+					Enter your name and email below to get started
+				</p>
+				if len(errorMessage) > 0 {
+					<div role="alert" class="alert alert-error alert-dash rounded-none mt-2">
+						<span>{ errorMessage }</span>
+					</div>
+				}
+				<form method="POST" action="/signup" class="card-actions mt-2">
+					<div class="w-full flex flex-col gap-2">
+						<label for="name" class="label text-base-content font-medium">
+							Full Name
+						</label>
+						<input
+							id="name"
+							name="name"
+							class="input validator w-full"
+							type="text"
+							placeholder="e.g. John Doe"
+							autocomplete="name"
+							required
+							minlength="4"
+							title="Enter your full name"
+						/>
+						<div class="validator-hint mt-0 hidden">
+							Name is required and must be at least 4 characters long
+						</div>
+					</div>
+					<div class="w-full flex flex-col gap-2">
+						<label for="email" class="label text-base-content font-medium w-full">
+							Email
+						</label>
+						<input
+							id="email"
+							name="email"
+							class="input validator w-full"
+							type="email"
+							placeholder="mail@site.com"
+							autocomplete="email"
+							required
+                            title="Enter your email address"
+						/>
+						<div class="validator-hint mt-0 hidden">
+							Enter a valid email address
+						</div>
+					</div>
+					<div class="w-full flex flex-col gap-2">
+						<label for="password" class="label text-base-content font-medium w-full">
+							Password
+						</label>
+						<input
+							id="password"
+							name="password"
+							class="input validator w-full"
+							type="password"
+							autocomplete="new-password"
+							minlength="8"
+							required
+							pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,30}$"
+							title="Enter a valid password"
+						/>
+						<p class="validator-hint mt-0 hidden">
+							Must be more 8-30 characters in length, including
+							<br/>
+							At least one number
+							<br/>
+							At least one lowercase letter
+							<br/>
+							At least one uppercase letter
+						</p>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block mt-4">
+						Create account
+					</button>
+					<div class="divider w-full my-1">OR</div>
+					<a href="/" class="btn bg-white text-neutral-800 border-base-300 btn-block hover:bg-neutral-100">
+						@icons.IconGoogle()
+						Sign up with Google
+					</a>
+					<p class="text-center w-full mt-2">
+						Already have an account? 
+						<a href="/login" class="link link-primary link-hover">
+                            Sign in
+						</a>
+					</p>
+				</form>
+			</div>
+		</div>
+	</main>
+}

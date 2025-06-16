@@ -1,0 +1,5 @@
+node_modules
+pgdata
+**/tmp
+public/index.css
+**/*_templ.go
